@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stilo Auto Peças | Tradição e Qualidade há mais de 30 Anos</title>
+  <meta name="description" content="Stilo Auto Peças — Mais de 30 anos servindo Sabará e região com o catálogo completo de peças automotivas. Amortecedores, baterias, óleos, suspensão e muito mais.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand':      '#c0392b',
+            'brand-dark': '#96281b',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          keyframes: {
+            fadeUp: {
+              '0%':   { opacity: '0', transform: 'translateY(32px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            pulseRed: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(192,57,43,0.6)' },
+              '50%':       { boxShadow: '0 0 0 12px rgba(192,57,43,0)' },
+            },
+          },
+          animation: {
+            'fade-up-1': 'fadeUp 0.8s ease 0.1s both',
+            'fade-up-2': 'fadeUp 0.8s ease 0.35s both',
+            'fade-up-3': 'fadeUp 0.8s ease 0.6s both',
+            'fade-up-4': 'fadeUp 0.8s ease 0.85s both',
+            'pulse-red': 'pulseRed 2s infinite',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+
+    /* Hero overlay — escuridão + leve toque vermelho no canto */
+    .hero-overlay {
+      background: linear-gradient(
+        155deg,
+        rgba(0, 0, 0, 0.92) 0%,
+        rgba(5, 5, 5, 0.80) 45%,
+        rgba(120, 20, 15, 0.45) 100%
+      );
+    }
+
+    /* Linha divisória vermelha */
+    .red-bar {
+      width: 52px;
+      height: 4px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #c0392b, #e74c3c);
+    }
+
+    /* Hover elevação nos cards */
+    .product-card {
+      transition: transform 0.32s ease, box-shadow 0.32s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 24px 48px rgba(192, 57, 43, 0.25);
+    }
+
+    /* Nav link underline animada */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 2px;
+      background: #c0392b;
+      transition: width 0.28s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Mobile menu toggle */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: flex; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #c0392b; border-radius: 3px; }
+  </style>
+</head>
+
+<body class="bg-gray-950 text-white font-sans antialiased">
+
+  <!-- ══════════════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════════════ -->
+  <nav class="fixed top-0 inset-x-0 z-50 bg-black/85 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#inicio" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 bg-red-700 rounded-lg flex items-center justify-center font-black text-white text-xl shadow-lg shadow-red-900/30 group-hover:bg-red-600 transition-colors">S</div>
+        <div>
+          <div class="font-black text-white text-lg leading-none tracking-wider">STILO</div>
+          <div class="text-red-500 text-[10px] font-bold tracking-[0.2em] uppercase">Auto Peças</div>
+        </div>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#inicio"   class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Início</a>
+        <a href="#sobre"    class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Sobre</a>
+        <a href="#produtos" class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Produtos</a>
+        <a href="#contato"  class="nav-link text-gray-300 hover:text-white text-sm font-medium transition-colors">Contato</a>
+        <a href="https://wa.me/553136711210?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20Stilo%20Auto%20Pe%C3%A7as."
+           target="_blank" rel="noopener noreferrer"
+           class="animate-pulse-red bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all hover:scale-105">
+          📱 Fale Conosco
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-btn" aria-label="Menu" class="md:hidden flex flex-col gap-1.5 p-2">
+        <span class="w-6 h-0.5 bg-white rounded transition-all"></span>
+        <span class="w-6 h-0.5 bg-white rounded transition-all"></span>
+        <span class="w-4 h-0.5 bg-white rounded transition-all"></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden flex-col gap-0 bg-black/95 border-t border-white/10">
+      <a href="#inicio"   onclick="closeMobileMenu()" class="block px-6 py-4 text-gray-300 hover:text-white hover:bg-white/5 transition-colors border-b border-white/5">Início</a>
+      <a href="#sobre"    onclick="closeMobileMenu()" class="block px-6 py-4 text-gray-300 hover:text-white hover:bg-white/5 transition-colors border-b border-white/5">Sobre</a>
+      <a href="#produtos" onclick="closeMobileMenu()" class="block px-6 py-4 text-gray-300 hover:text-white hover:bg-white/5 transition-colors border-b border-white/5">Produtos</a>
+      <a href="#contato"  onclick="closeMobileMenu()" class="block px-6 py-4 text-gray-300 hover:text-white hover:bg-white/5 transition-colors border-b border-white/5">Contato</a>
+      <div class="px-6 py-4">
+        <a href="https://wa.me/553136711210" target="_blank" rel="noopener noreferrer"
+           class="block text-center w-full bg-red-600 hover:bg-red-700 text-white px-5 py-3 rounded-lg font-bold transition-colors">
+          📱 (31) 3671-1210
+        </a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ══════════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════════ -->
+  <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+    <!-- Background: fachada da loja -->
+    <div class="absolute inset-0 z-0">
+      <img src="imgs/fachada_loja.jpg" alt="Fachada Stilo Auto Peças"
+           class="w-full h-full object-cover object-center scale-105">
+      <div class="hero-overlay absolute inset-0"></div>
+    </div>
+
+    <!-- Conteúdo central -->
+    <div class="relative z-10 max-w-5xl mx-auto px-5 text-center pt-24 pb-16">
+
+      <!-- Badge -->
+      <div class="animate-fade-up-1 inline-flex items-center gap-2.5 bg-red-700/20 border border-red-500/35 text-red-400 px-5 py-2 rounded-full text-sm font-semibold mb-8 backdrop-blur-sm">
+        <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+        Mais de 30 anos de tradição — Sabará, MG
+      </div>
+
+      <!-- Heading principal -->
+      <h1 class="animate-fade-up-2 text-5xl sm:text-7xl md:text-8xl font-black text-white leading-[0.92] tracking-tight mb-6"
+          style="text-shadow: 0 4px 24px rgba(0,0,0,0.6);">
+        TUDO QUE SEU<br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-500 to-red-700">
+          VEÍCULO
+        </span><br>
+        PRECISA
+      </h1>
+
+      <!-- Subtítulo -->
+      <p class="animate-fade-up-3 text-lg sm:text-xl md:text-2xl text-gray-300 font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+        Do motor à suspensão, encontre o catálogo completo de peças automotivas com
+        a qualidade e confiança que só <strong class="text-white font-semibold">30 anos de experiência</strong> garantem.
+      </p>
+
+      <!-- CTAs -->
+      <div class="animate-fade-up-4 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#produtos"
+           class="bg-red-600 hover:bg-red-700 text-white px-9 py-4 rounded-xl font-bold text-lg transition-all hover:scale-105 hover:shadow-xl hover:shadow-red-700/35">
+          Ver Catálogo →
+        </a>
+        <a href="https://wa.me/553136711210?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20o%20estoque%20da%20Stilo%20Auto%20Pe%C3%A7as."
+           target="_blank" rel="noopener noreferrer"
+           class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/18 backdrop-blur-sm border border-white/20 text-white px-9 py-4 rounded-xl font-bold text-lg transition-all hover:scale-105">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 animate-bounce opacity-60">
+      <span class="text-gray-400 text-xs tracking-widest uppercase">Confira</span>
+      <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       BARRA DE NÚMEROS  (vermelho de contraste)
+  ══════════════════════════════════════════════════ -->
+  <section class="bg-gradient-to-r from-red-800 via-red-600 to-red-700 py-8">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="text-4xl font-black text-white mb-1">30+</div>
+          <div class="text-red-100 text-sm font-medium uppercase tracking-wider">Anos de Mercado</div>
+        </div>
+        <div>
+          <div class="text-4xl font-black text-white mb-1">5.000+</div>
+          <div class="text-red-100 text-sm font-medium uppercase tracking-wider">Itens em Estoque</div>
+        </div>
+        <div>
+          <div class="text-4xl font-black text-white mb-1">100%</div>
+          <div class="text-red-100 text-sm font-medium uppercase tracking-wider">Sede Própria</div>
+        </div>
+        <div>
+          <div class="text-4xl font-black text-white mb-1">★★★★★</div>
+          <div class="text-red-100 text-sm font-medium uppercase tracking-wider">Atendimento</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       SOBRE
+  ══════════════════════════════════════════════════ -->
+  <section id="sobre" class="py-24 bg-gray-950">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Texto -->
+        <div>
+          <div class="red-bar mb-6"></div>
+          <h2 class="text-4xl sm:text-5xl font-black text-white mb-6 leading-tight">
+            TRADIÇÃO,<br>
+            <span class="text-red-500">CONFIANÇA</span><br>
+            E QUALIDADE
+          </h2>
+          <p class="text-gray-400 text-lg leading-relaxed mb-5">
+            Há mais de <strong class="text-white">30 anos</strong>, a Stilo Auto Peças é referência no
+            mercado automobilístico de Sabará e toda a região metropolitana de Belo Horizonte.
+            Nossa história é construída com honestidade, conhecimento técnico e o compromisso
+            de entregar sempre o melhor para nossos clientes.
+          </p>
+          <p class="text-gray-400 text-lg leading-relaxed mb-10">
+            Com <strong class="text-white">sede própria</strong> na Rodovia Senador Eliseu Resende,
+            mantemos um vastíssimo catálogo de peças originais e de alto padrão para
+            <strong class="text-white">todas as marcas e modelos</strong> — do carro popular ao importado.
+          </p>
+
+          <!-- Cards de destaque -->
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="bg-gray-900 border border-gray-800 hover:border-red-700/50 rounded-2xl p-5 transition-colors">
+              <div class="text-3xl mb-3">🏢</div>
+              <div class="text-white font-bold mb-1">Sede Própria</div>
+              <div class="text-gray-500 text-sm">Estrutura completa para te atender com excelência</div>
+            </div>
+            <div class="bg-gray-900 border border-gray-800 hover:border-red-700/50 rounded-2xl p-5 transition-colors">
+              <div class="text-3xl mb-3">📦</div>
+              <div class="text-white font-bold mb-1">Catálogo Completo</div>
+              <div class="text-gray-500 text-sm">Todas as peças para o seu veículo em um só lugar</div>
+            </div>
+            <div class="bg-gray-900 border border-gray-800 hover:border-red-700/50 rounded-2xl p-5 transition-colors">
+              <div class="text-3xl mb-3">🔧</div>
+              <div class="text-white font-bold mb-1">Equipe Técnica</div>
+              <div class="text-gray-500 text-sm">Especialistas que indicam a peça certa, sem erro</div>
+            </div>
+            <div class="bg-gray-900 border border-gray-800 hover:border-red-700/50 rounded-2xl p-5 transition-colors">
+              <div class="text-3xl mb-3">⚡</div>
+              <div class="text-white font-bold mb-1">Atendimento Ágil</div>
+              <div class="text-gray-500 text-sm">Rapidez e eficiência quando você mais precisa</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Imagem + badge -->
+        <div class="relative">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-red-950/40">
+            <img src="imgs/tudopraseumotor.jpg" alt="Tudo para o seu motor"
+                 class="w-full h-[480px] object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <div class="bg-red-700/90 backdrop-blur-sm rounded-2xl px-6 py-5">
+                <div class="text-white font-black text-3xl leading-none mb-1">30+ Anos</div>
+                <div class="text-red-100 text-sm">Servindo o mercado automotivo com excelência e dedicação</div>
+              </div>
+            </div>
+          </div>
+          <!-- Decoração geométrica -->
+          <div class="absolute -top-5 -right-5 w-28 h-28 bg-red-700/20 rounded-3xl -z-10 blur-sm"></div>
+          <div class="absolute -bottom-7 -left-7 w-36 h-36 bg-red-900/15 rounded-full -z-10 blur-lg"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       PRODUTOS
+  ══════════════════════════════════════════════════ -->
+  <section id="produtos" class="py-24 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-5">
+
+      <!-- Cabeçalho seção -->
+      <div class="text-center mb-16">
+        <div class="red-bar mx-auto mb-6"></div>
+        <h2 class="text-4xl sm:text-5xl font-black text-white mb-4">NOSSO CATÁLOGO</h2>
+        <p class="text-gray-400 text-xl max-w-2xl mx-auto">
+          Peças de alta qualidade para manter seu veículo funcionando no máximo desempenho.
+          Do motor à carroceria, você encontra aqui.
+        </p>
+      </div>
+
+      <!-- Grid de produtos -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card: Amortecedores -->
+        <div class="product-card bg-gray-950 border border-gray-800 hover:border-red-700/40 rounded-2xl overflow-hidden group">
+          <div class="relative h-52 overflow-hidden">
+            <img src="imgs/amortecedor.webp" alt="Amortecedores"
+                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/20 to-transparent"></div>
+            <div class="absolute top-4 left-4">
+              <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Suspensão</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-white font-bold text-xl mb-2">Amortecedores</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Restitua o conforto e a segurança da sua direção. Trabalhe com amortecedores de primeira linha.</p>
+          </div>
+        </div>
+
+        <!-- Card: Baterias -->
+        <div class="product-card bg-gray-950 border border-gray-800 hover:border-red-700/40 rounded-2xl overflow-hidden group">
+          <div class="relative h-52 overflow-hidden">
+            <img src="imgs/baterias.jpg" alt="Baterias"
+                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/20 to-transparent"></div>
+            <div class="absolute top-4 left-4">
+              <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Elétrica</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-white font-bold text-xl mb-2">Baterias</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Alta performance e longa durabilidade. Baterias para todos os tipos de veículos e aplicações.</p>
+          </div>
+        </div>
+
+        <!-- Card: Calotas -->
+        <div class="product-card bg-gray-950 border border-gray-800 hover:border-red-700/40 rounded-2xl overflow-hidden group">
+          <div class="relative h-52 overflow-hidden">
+            <img src="imgs/calotas.jpg" alt="Calotas e Rodas"
+                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/20 to-transparent"></div>
+            <div class="absolute top-4 left-4">
+              <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Rodas</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-white font-bold text-xl mb-2">Calotas & Rodas</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Estilo e proteção para as suas rodas. Linha completa de calotas para todos os modelos.</p>
+          </div>
+        </div>
+
+        <!-- Card: Óleos -->
+        <div class="product-card bg-gray-950 border border-gray-800 hover:border-red-700/40 rounded-2xl overflow-hidden group">
+          <div class="relative h-52 overflow-hidden">
+            <img src="imgs/oleos.jpg" alt="Óleos e Lubrificantes"
+                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/20 to-transparent"></div>
+            <div class="absolute top-4 left-4">
+              <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Lubrificação</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-white font-bold text-xl mb-2">Óleos & Lubrificantes</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Os melhores lubrificantes do mercado para proteger e prolongar a vida útil do seu motor.</p>
+          </div>
+        </div>
+
+        <!-- Card: Suspensão -->
+        <div class="product-card bg-gray-950 border border-gray-800 hover:border-red-700/40 rounded-2xl overflow-hidden group">
+          <div class="relative h-52 overflow-hidden">
+            <img src="imgs/suspensao.png" alt="Sistema de Suspensão"
+                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/20 to-transparent"></div>
+            <div class="absolute top-4 left-4">
+              <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Suspensão</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-white font-bold text-xl mb-2">Suspensão Completa</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Kits completos de suspensão para devolver estabilidade, controle e segurança ao seu veículo.</p>
+          </div>
+        </div>
+
+        <!-- Card: Velas -->
+        <div class="product-card bg-gray-950 border border-gray-800 hover:border-red-700/40 rounded-2xl overflow-hidden group">
+          <div class="relative h-52 overflow-hidden">
+            <img src="imgs/velas.png" alt="Velas de Ignição"
+                 class="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/20 to-transparent"></div>
+            <div class="absolute top-4 left-4">
+              <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Ignição</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-white font-bold text-xl mb-2">Velas de Ignição</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Velas premium para manter seu motor com máxima eficiência, economia e potência.</p>
+          </div>
+        </div>
+
+        <!-- Card: Fluidos — largura dupla em mobile, normal em lg -->
+        <div class="product-card bg-gray-950 border border-gray-800 hover:border-red-700/40 rounded-2xl overflow-hidden group sm:col-span-2 lg:col-span-3">
+          <div class="grid sm:grid-cols-2 gap-0">
+            <div class="relative h-52 sm:h-auto overflow-hidden">
+              <img src="imgs/fluidoradiador.jpg" alt="Fluidos e Aditivos"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent to-gray-950/80 hidden sm:block"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/20 to-transparent sm:hidden"></div>
+            </div>
+            <div class="p-8 flex flex-col justify-center">
+              <span class="text-red-500 text-xs font-bold tracking-widest uppercase mb-3">Manutenção Preventiva</span>
+              <h3 class="text-white font-black text-2xl sm:text-3xl mb-3">Fluidos & Aditivos</h3>
+              <p class="text-gray-400 leading-relaxed mb-5">
+                Fluidos para radiador, freio e todos os sistemas vitais do seu veículo.
+                Proteja o motor do superaquecimento e garanta a integridade de todo o sistema de refrigeração.
+              </p>
+              <a href="https://wa.me/553136711210?text=Ol%C3%A1!%20Quero%20consultar%20fluidos%20e%20aditivos."
+                 target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-2 text-red-400 hover:text-red-300 font-semibold transition-colors">
+                Consultar disponibilidade →
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CTA catálogo completo -->
+      <div class="text-center mt-14">
+        <a href="https://wa.me/553136711210?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20o%20cat%C3%A1logo%20completo%20de%20pe%C3%A7as%20da%20Stilo."
+           target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all hover:scale-105 hover:shadow-2xl hover:shadow-red-700/30">
+          <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Consultar Catálogo Completo via WhatsApp
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       BANNER "POR QUE ESCOLHER A STILO"
+  ══════════════════════════════════════════════════ -->
+  <section class="relative py-28 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="imgs/tudopraseumotor.jpg" alt="Motor" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/90"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
+      <div class="red-bar mx-auto mb-6"></div>
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-5 leading-tight">
+        POR QUE ESCOLHER<br>
+        <span class="text-red-500">A STILO?</span>
+      </h2>
+      <p class="text-gray-300 text-xl mb-14 max-w-3xl mx-auto">
+        Com mais de três décadas de mercado, somos a escolha certa para quem exige
+        qualidade, preço justo e atendimento verdadeiramente especializado.
+      </p>
+
+      <div class="grid sm:grid-cols-3 gap-6">
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-white/25 transition-colors">
+          <div class="text-5xl mb-5">🏆</div>
+          <h3 class="text-white font-bold text-xl mb-3">Experiência Comprovada</h3>
+          <p class="text-gray-400 leading-relaxed">Mais de 30 anos no mercado. Conhecimento acumulado que nenhum algoritmo substitui.</p>
+        </div>
+        <div class="bg-red-700/20 backdrop-blur-sm border border-red-500/30 rounded-2xl p-8 hover:border-red-500/50 transition-colors">
+          <div class="text-5xl mb-5">🔩</div>
+          <h3 class="text-white font-bold text-xl mb-3">Catálogo Sem Limites</h3>
+          <p class="text-gray-400 leading-relaxed">Do parafuso ao câmbio, temos tudo. Todas as marcas, todos os modelos, numa só loja.</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-white/25 transition-colors">
+          <div class="text-5xl mb-5">💬</div>
+          <h3 class="text-white font-bold text-xl mb-3">Atendimento Humanizado</h3>
+          <p class="text-gray-400 leading-relaxed">Equipe técnica pronta para indicar a peça certa para o seu veículo — sem erro e sem desperdício.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       CONTATO
+  ══════════════════════════════════════════════════ -->
+  <section id="contato" class="py-24 bg-gray-950">
+    <div class="max-w-7xl mx-auto px-5">
+
+      <div class="text-center mb-16">
+        <div class="red-bar mx-auto mb-6"></div>
+        <h2 class="text-4xl sm:text-5xl font-black text-white mb-4">FALE CONOSCO</h2>
+        <p class="text-gray-400 text-xl">Venha nos visitar ou entre em contato — estamos prontos para atender você.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-10 items-stretch">
+
+        <!-- Informações -->
+        <div class="flex flex-col gap-5">
+
+          <!-- WhatsApp / Telefone -->
+          <a href="https://wa.me/553136711210?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20as%20pe%C3%A7as%20da%20Stilo."
+             target="_blank" rel="noopener noreferrer"
+             class="flex items-center gap-5 bg-gray-900 border border-gray-800 hover:border-green-500/50 rounded-2xl p-6 group transition-all hover:shadow-lg hover:shadow-green-950/40">
+            <div class="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-green-900/30">
+              <svg class="w-8 h-8 fill-white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <div>
+              <div class="text-gray-400 text-sm mb-0.5">Telefone / WhatsApp</div>
+              <div class="text-white font-black text-2xl group-hover:text-green-400 transition-colors">(31) 3671-1210</div>
+              <div class="text-gray-500 text-sm mt-0.5">Toque para abrir o WhatsApp ↗</div>
+            </div>
+          </a>
+
+          <!-- Endereço -->
+          <a href="https://www.google.com/maps/search/Rod.+Senador+Eliseu+Resende+773+Caieiras+Sabar%C3%A1+MG"
+             target="_blank" rel="noopener noreferrer"
+             class="flex items-center gap-5 bg-gray-900 border border-gray-800 hover:border-red-600/50 rounded-2xl p-6 group transition-all hover:shadow-lg hover:shadow-red-950/40">
+            <div class="w-16 h-16 bg-red-700 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-red-900/30">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-gray-400 text-sm mb-0.5">Endereço</div>
+              <div class="text-white font-bold text-lg group-hover:text-red-400 transition-colors">Avenida Expedicionário Romeu Jerônimo Dantas, 789</div>
+              <div class="text-gray-400">Caieiras, Sabará — MG</div>
+              <div class="text-gray-500 text-sm mt-0.5">Abrir no Google Maps ↗</div>
+            </div>
+          </a>
+
+          <!-- Horários -->
+          <div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 flex-1">
+            <div class="flex items-center gap-4 mb-5">
+              <div class="w-16 h-16 bg-amber-600 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-amber-900/30">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-gray-400 text-sm">Horário de Funcionamento</div>
+                <div class="text-white font-bold text-lg">Estamos aqui para você!</div>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between py-3 border-b border-gray-800">
+                <div class="flex items-center gap-3">
+                  <span class="flex-shrink-0 w-2.5 h-2.5 bg-green-500 rounded-full"></span>
+                  <span class="text-gray-300 font-medium">Segunda a Sexta-feira</span>
+                </div>
+                <span class="text-white font-bold">08h00 – 18h00</span>
+              </div>
+              <div class="flex items-center justify-between py-3">
+                <div class="flex items-center gap-3">
+                  <span class="flex-shrink-0 w-2.5 h-2.5 bg-yellow-400 rounded-full"></span>
+                  <span class="text-gray-300 font-medium">Sábado</span>
+                </div>
+                <span class="text-white font-bold">08h00 – 12h00</span>
+              </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-gray-800">
+              <p class="text-gray-500 text-sm text-center">Domingos e feriados: fechado</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Mapa Google -->
+        <div class="rounded-2xl overflow-hidden border border-gray-800 shadow-2xl shadow-black/40 min-h-[420px]">
+          <iframe
+            src="https://maps.google.com/maps?q=Rod+Senador+Eliseu+Resende+773+Caieiras+Sabar%C3%A1+MG&output=embed"
+            width="100%"
+            height="100%"
+            style="border:0; min-height:420px; display:block;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Localização Stilo Auto Peças">
+          </iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════ -->
+  <footer class="bg-black border-t border-gray-900 py-12">
+    <div class="max-w-7xl mx-auto px-5">
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
+        <!-- Logo footer -->
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 bg-red-700 rounded-2xl flex items-center justify-center font-black text-white text-3xl shadow-lg shadow-red-900/30">S</div>
+          <div>
+            <div class="font-black text-white text-2xl leading-none">STILO AUTO PEÇAS</div>
+            <div class="text-red-500 text-xs font-bold tracking-[0.2em] uppercase mt-0.5">Mais de 30 anos de tradição</div>
+          </div>
+        </div>
+
+        <!-- Nav footer -->
+        <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-gray-500">
+          <a href="#inicio"   class="hover:text-white transition-colors">Início</a>
+          <a href="#sobre"    class="hover:text-white transition-colors">Sobre</a>
+          <a href="#produtos" class="hover:text-white transition-colors">Produtos</a>
+          <a href="#contato"  class="hover:text-white transition-colors">Contato</a>
+        </div>
+
+        <!-- WhatsApp footer -->
+        <a href="https://wa.me/553136711210" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-2 bg-green-700 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-bold transition-all hover:scale-105">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          (31) 3671-1210
+        </a>
+      </div>
+
+      <div class="border-t border-gray-900 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2 text-gray-600 text-sm">
+        <span>© 2026 Stilo Auto Peças. Todos os direitos reservados.</span>
+        <span>Avenida Expedicionário Romeu Jerônimo Dantas, 789 — Caieiras, Sabará — MG</span>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- WhatsApp flutuante -->
+  <a href="https://wa.me/553136711210?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Stilo%20Auto%20Pe%C3%A7as%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+     target="_blank" rel="noopener noreferrer"
+     class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-green-500 hover:bg-green-400 rounded-full flex items-center justify-center shadow-2xl shadow-green-900/50 transition-all hover:scale-110"
+     title="Fale conosco no WhatsApp">
+    <svg class="w-8 h-8 fill-white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-ping"></span>
+    <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full"></span>
+  </a>
+
+
+  <!-- ══════════════════════════════════════════════════
+       SCRIPTS
+  ══════════════════════════════════════════════════ -->
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+    }
+
+    // Navbar background ao rolar
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        nav.classList.add('bg-black/95');
+        nav.classList.remove('bg-black/85');
+      } else {
+        nav.classList.add('bg-black/85');
+        nav.classList.remove('bg-black/95');
+      }
+    });
+
+    // Animação de entrada ao scroll (Intersection Observer)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          entry.target.classList.remove('opacity-0', 'translate-y-8');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.product-card, .bg-gray-900.border').forEach(el => {
+      el.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-700');
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
